@@ -23,7 +23,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <Header />
   <main id="main-content">
     <section id="hero">
-      <h1>Mingalaba</h1>
+      <h1>withatz blog</h1>
       <a
         target="_blank"
         href="/rss.xml"
@@ -42,20 +42,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       </a>
 
       <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
+        Welcome to the withatz blog, your go-to resource for all things cybersecurity and hiring in the tech industry. Here, we delve into the latest trends, best practices, and expert insights to help you navigate the complex world of digital security and talent acquisition. We encourage our readers to engage with our content by leaving comments, sharing their experiences, and participating in discussions. Your input is valuable and helps create a dynamic community of cybersecurity and hiring professionals.
       </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
+  
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
