@@ -1,7 +1,7 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://blog-witehatz.vercel.app", // Update this with your actual Vercel deployment URL
+  website: "https://blog-witehatz.vercel.app/", // Add a trailing slash
   author: "Maliq",
   profile: "https://witehatz-56a837b76c4a.herokuapp.com/",
   desc: "witehatz blog, everything cybersecurity.",
