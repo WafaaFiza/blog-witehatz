@@ -1,8 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import Main from "@layouts/Main.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
@@ -20,97 +19,96 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
 <Layout>
-  <Header />
-  <main id="main-content">
-    <section id="hero">
-      <h1>withatz blog</h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="rss-link"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
-          ><path
-            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-          ></path><path
-            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-          ></path><circle cx="6" cy="18" r="2"></circle>
-        </svg>
-        <span class="sr-only">RSS Feed</span>
-      </a>
+  <Main>
+    <main id="main-content">
+      <section id="hero">
+        <h1>witehatz blog</h1>
+        <a
+          target="_blank"
+          href="/rss.xml"
+          class="rss-link"
+          aria-label="rss feed"
+          title="RSS Feed"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
+            ><path
+              d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
+            ></path><path
+              d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
+            ></path><circle cx="6" cy="18" r="2"></circle>
+          </svg>
+          <span class="sr-only">RSS Feed</span>
+        </a>
 
-      <p>
-        Welcome to the withatz blog, your go-to resource for all things cybersecurity and hiring in the tech industry. Here, we delve into the latest trends, best practices, and expert insights to help you navigate the complex world of digital security and talent acquisition. We encourage our readers to engage with our content by leaving comments, sharing their experiences, and participating in discussions. Your input is valuable and helps create a dynamic community of cybersecurity and hiring professionals.
-      </p>
-  
+        <p>
+          Welcome to the withatz blog, your go-to resource for all things cybersecurity and hiring in the tech industry. Here, we delve into the latest trends, best practices, and expert insights to help you navigate the complex world of digital security and talent acquisition. We encourage our readers to engage with our content by leaving comments, sharing their experiences, and participating in discussions. Your input is valuable and helps create a dynamic community of cybersecurity and hiring professionals.
+        </p>
+      
+        {
+          // only display if at least one social link is enabled
+          socialCount > 0 && (
+            <div class="social-wrapper">
+              <div class="social-links">Social Links:</div>
+              <Socials />
+            </div>
+          )
+        }
+      </section>
+
+      <Hr />
+
       {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
-                <Card
-                  href={`/posts/${slug}/`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts">
-          <h2>Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              ({ data, slug }, index) =>
-                index < SITE.postPerIndex && (
+        featuredPosts.length > 0 && (
+          <>
+            <section id="featured">
+              <h2>Featured</h2>
+              <ul>
+                {featuredPosts.map(({ data, slug }) => (
                   <Card
                     href={`/posts/${slug}/`}
                     frontmatter={data}
                     secHeading={false}
                   />
-                )
-            )}
-          </ul>
-        </section>
-      )
-    }
+                ))}
+              </ul>
+            </section>
+            {recentPosts.length > 0 && <Hr />}
+          </>
+        )
+      }
 
-    <div class="all-posts-btn-wrapper">
-      <LinkButton href="/posts/">
-        All Posts
-        <svg xmlns="http://www.w3.org/2000/svg"
-          ><path
-            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-          ></path>
-        </svg>
-      </LinkButton>
-    </div>
-  </main>
+      {
+        recentPosts.length > 0 && (
+          <section id="recent-posts">
+            <h2>Recent Posts</h2>
+            <ul>
+              {recentPosts.map(
+                ({ data, slug }, index) =>
+                  index < SITE.postPerIndex && (
+                    <Card
+                      href={`/posts/${slug}/`}
+                      frontmatter={data}
+                      secHeading={false}
+                    />
+                  )
+              )}
+            </ul>
+          </section>
+        )
+      }
 
-  <Footer />
+      <div class="all-posts-btn-wrapper">
+        <LinkButton href="/posts/">
+          All Posts
+          <svg xmlns="http://www.w3.org/2000/svg"
+            ><path
+              d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+            ></path>
+          </svg>
+        </LinkButton>
+      </div>
+    </main>
+  </Main>
 </Layout>
 
 <style>

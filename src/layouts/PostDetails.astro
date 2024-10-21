@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Tag from "@components/Tag.astro";
@@ -62,143 +63,143 @@ const nextPost =
 ---
 
 <Layout {...layoutProps}>
-  <Header />
-
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
-    <button
-      class="focus-outline mb-2 mt-8 flex hover:opacity-75"
-      onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg"
-        ><path
-          d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
-        ></path>
-      </svg><span>Go back</span>
-    </button>
-  </div>
-  <main id="main-content">
-    <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Datetime
-      pubDatetime={pubDatetime}
-      modDatetime={modDatetime}
-      size="lg"
-      className="my-2"
-      editPost={editPost}
-      postId={post.id}
-    />
-    <article id="article" class="prose mx-auto mt-8 max-w-3xl">
-      <Content />
-    </article>
-
-    <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
-
-    <div
-      class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
-    >
+  <Main>
+    <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
       <button
-        id="back-to-top"
-        class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+        class="focus-outline mb-2 mt-8 flex hover:opacity-75"
+        onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rotate-90">
-          <path
+        <svg xmlns="http://www.w3.org/2000/svg"
+          ><path
             d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
           ></path>
-        </svg>
-        <span>Back to Top</span>
+        </svg><span>Go back</span>
       </button>
-
-      <ShareLinks />
     </div>
+    <main id="main-content">
+      <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
+      <Datetime
+        pubDatetime={pubDatetime}
+        modDatetime={modDatetime}
+        size="lg"
+        className="my-2"
+        editPost={editPost}
+        postId={post.id}
+      />
+      <article id="article" class="prose mx-auto mt-8 max-w-3xl">
+        <Content />
+      </article>
 
-    <!-- Add Giscus comments section -->
-    <div class="giscus-comments mt-10">
-      <script src="https://giscus.app/client.js"
-        data-repo="WafaaFiza/blog-witehatz"
-        data-repo-id="R_kgDONCV4vw"
-        data-category="General"
-        data-category-id="DIC_kwDONCV4v84Cje2N"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="noborder_dark"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-      </script>
-    </div>
+      <ul class="my-8">
+        {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
+      </ul>
 
-    <hr class="my-6 border-dashed" />
+      <div
+        class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
+      >
+        <button
+          id="back-to-top"
+          class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="rotate-90">
+            <path
+              d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
+            ></path>
+          </svg>
+          <span>Back to Top</span>
+        </button>
 
-    <!-- Previous/Next Post Buttons -->
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {
-        prevPost && (
-          <a
-            href={`/posts/${prevPost.slug}`}
-            class="flex w-full gap-1 hover:opacity-75"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left flex-none"
+        <ShareLinks />
+      </div>
+
+      <!-- Add Giscus comments section -->
+      <div class="giscus-comments mt-10">
+        <script src="https://giscus.app/client.js"
+          data-repo="WafaaFiza/blog-witehatz"
+          data-repo-id="R_kgDONCV4vw"
+          data-category="General"
+          data-category-id="DIC_kwDONCV4v84Cje2N"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="noborder_dark"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+        </script>
+      </div>
+
+      <hr class="my-6 border-dashed" />
+
+      <!-- Previous/Next Post Buttons -->
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {
+          prevPost && (
+            <a
+              href={`/posts/${prevPost.slug}`}
+              class="flex w-full gap-1 hover:opacity-75"
             >
-              <>
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M15 6l-6 6l6 6" />
-              </>
-            </svg>
-            <div>
-              <span>Previous Post</span>
-              <div class="text-sm text-skin-accent/85">{prevPost.title}</div>
-            </div>
-          </a>
-        )
-      }
-      {
-        nextPost && (
-          <a
-            href={`/posts/${nextPost.slug}`}
-            class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"
-          >
-            <div>
-              <span>Next Post</span>
-              <div class="text-sm text-skin-accent/85">{nextPost.title}</div>
-            </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right flex-none"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left flex-none"
+              >
+                <>
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M15 6l-6 6l6 6" />
+                </>
+              </svg>
+              <div>
+                <span>Previous Post</span>
+                <div class="text-sm text-skin-accent/85">{prevPost.title}</div>
+              </div>
+            </a>
+          )
+        }
+        {
+          nextPost && (
+            <a
+              href={`/posts/${nextPost.slug}`}
+              class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"
             >
-              <>
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M9 6l6 6l-6 6" />
-              </>
-            </svg>
-          </a>
-        )
-      }
-    </div>
-  </main>
-  <Footer />
+              <div>
+                <span>Next Post</span>
+                <div class="text-sm text-skin-accent/85">{nextPost.title}</div>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right flex-none"
+              >
+                <>
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M9 6l6 6l-6 6" />
+                </>
+              </svg>
+            </a>
+          )
+        }
+      </div>
+    </main>
+    <Footer />
+  </Main>
 </Layout>
 
 <style>
