@@ -1,5 +1,8 @@
 import type { Site, SocialObjects } from "./types";
 
+export const SITE_TITLE = "Your Site Title";
+export const SITE_DESCRIPTION = "Your site description";
+
 export const SITE: Site = {
   website: "https://blog-witehatz.vercel.app/", // Add a trailing slash
   author: "Maliq",
