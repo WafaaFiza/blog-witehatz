@@ -1,5 +1,6 @@
 import type { Site, SocialObjects } from "./types";
 
+// Force new deployment
 export const SITE_TITLE = "Your Site Title";
 export const SITE_DESCRIPTION = "Your site description";
 
